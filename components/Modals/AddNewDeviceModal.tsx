@@ -30,7 +30,7 @@ const AddNewDeviceModal = ({ isOpen, onClose }) => {
 				<ModalCloseButton />
 				<ModalBody pb={6}>
 					<FormControl>
-						<FormLabel>Select device</FormLabel>
+						<FormLabel>Select device type</FormLabel>
 						<Select
 							styles={{
 								control: (provided) => ({
@@ -41,9 +41,12 @@ const AddNewDeviceModal = ({ isOpen, onClose }) => {
 							options={options}
 						/>
 					</FormControl>
-
 					<FormControl mt={4}>
 						<FormLabel>Set display name</FormLabel>
+						<Input placeholder="Last name" />
+					</FormControl>
+					<FormControl mt={4}>
+						<FormLabel>Set mac address</FormLabel>
 						<Input placeholder="Last name" />
 					</FormControl>
 				</ModalBody>

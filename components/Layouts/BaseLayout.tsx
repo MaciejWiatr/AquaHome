@@ -20,7 +20,13 @@ const BaseLayout = ({ children }) => {
 		>
 			<Sidebar />
 			<Navbar />
-			<GridItem bg="purple.50" p="8" gridArea="base">
+			<GridItem
+				bg="purple.50"
+				p="8"
+				gridArea="base"
+				h="full"
+				boxSizing="border-box"
+			>
 				{children}
 			</GridItem>
 			<TodosContainer />

@@ -21,6 +21,7 @@ import {
 	MenuItem,
 } from "@chakra-ui/react";
 import TodosContent from "../Todos/TodosContent";
+import Link from "next/link";
 
 const Sidebar = () => {
 	const { isLg } = useChakraBreakpoints();
@@ -62,9 +63,22 @@ const Sidebar = () => {
 				gridGap="5"
 				color="gray.400"
 			>
-				<SidebarIcon label="Dashboard" icon={<RiLayoutMasonryFill />} />
-				<SidebarIcon label="Statistics" icon={<BsBarChartFill />} />
-				<SidebarIcon label="Coupons" icon={<IoTicket />} />
+				<SidebarIcon
+					url="/"
+					label="Dashboard"
+					icon={<RiLayoutMasonryFill />}
+				/>
+
+				<SidebarIcon
+					url="/statistics"
+					label="Statistics"
+					icon={<BsBarChartFill />}
+				/>
+				<SidebarIcon
+					url="/coupons"
+					label="Coupons"
+					icon={<IoTicket />}
+				/>
 			</Flex>
 			<Spacer />
 			<Box>
