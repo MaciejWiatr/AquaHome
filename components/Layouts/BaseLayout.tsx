@@ -1,5 +1,6 @@
 import { Grid, GridItem } from "@chakra-ui/layout";
-import Sidebar from "./Sidebar";
+import Navbar from "../Navbar";
+import Sidebar from "../Sidebar/Sidebar";
 
 const BaseLayout = ({ children }) => {
 	return (
@@ -7,7 +8,7 @@ const BaseLayout = ({ children }) => {
 			<Sidebar />
 			<GridItem>
 				<Grid h="full" templateRows="100px 1fr">
-					<GridItem bg="red.100" />
+					<Navbar />
 					<GridItem bg="red.300">{children}</GridItem>
 				</Grid>
 			</GridItem>
