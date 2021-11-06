@@ -1,15 +1,24 @@
 import BaseLayout from "../components/Layouts/BaseLayout";
-import { Flex, Text, Spacer, Button } from "@chakra-ui/react";
+import { Flex, Text, Spacer, Button, useDisclosure } from "@chakra-ui/react";
 import { RiLayoutMasonryFill } from "react-icons/ri";
 import { BsPlusCircle } from "react-icons/bs";
 import useChakraBreakpoints from "../src/hooks/useChakraBreakPoints";
+import AddNewDeviceModal from "../components/Modals/AddNewDeviceModal";
+import { useState } from "react";
 
 export default function Home() {
 	const { isMd } = useChakraBreakpoints();
+	const { isOpen, onOpen, onClose } = useDisclosure();
 
 	return (
 		<BaseLayout>
-			<Flex fontSize="lg" fontWeight="semibold" color="gray.500" w="full">
+			<Flex
+				fontSize="lg"
+				fontWeight="semibold"
+				color="gray.500"
+				w="full"
+				flexDir="column"
+			>
 				<Flex alignItems="center" w="full">
 					{isMd && (
 						<>
@@ -21,7 +30,7 @@ export default function Home() {
 						</>
 					)}
 
-					<Flex>
+					<Flex width="30">
 						<Button
 							roundedLeft="full"
 							roundedRight="none"
@@ -59,6 +68,7 @@ export default function Home() {
 						colorScheme="purple"
 						size="lg"
 						fontSize="sm"
+						onClick={onOpen}
 					>
 						<Flex alignItems="center">
 							<BsPlusCircle />
@@ -66,7 +76,9 @@ export default function Home() {
 						</Flex>
 					</Button>
 				</Flex>
+				<Flex mt="10" w="full" bg="white" rounded="lg"></Flex>
 			</Flex>
+			<AddNewDeviceModal isOpen={isOpen} onClose={onClose} />
 		</BaseLayout>
 	);
 }

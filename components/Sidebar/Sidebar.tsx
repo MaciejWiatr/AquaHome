@@ -12,12 +12,13 @@ import { MdTaskAlt } from "react-icons/md";
 import { useDisclosure } from "@chakra-ui/hooks";
 import {
 	Drawer,
-	DrawerBody,
-	DrawerFooter,
-	DrawerHeader,
 	DrawerOverlay,
 	DrawerContent,
 	DrawerCloseButton,
+	Menu,
+	MenuButton,
+	MenuList,
+	MenuItem,
 } from "@chakra-ui/react";
 import TodosContent from "../Todos/TodosContent";
 
@@ -40,11 +41,20 @@ const Sidebar = () => {
 			alignItems="center"
 			gridArea="sidebar"
 		>
-			<Avatar
-				size="md"
-				name="Maciej Wiatr"
-				src="https://media-exp1.licdn.com/dms/image/C5603AQFPmrAmKI4LaA/profile-displayphoto-shrink_800_800/0/1571424514415?e=1641427200&v=beta&t=gIZXpwL-fylGPsXZtz5hh44QtWl26yoVSzKXeaJgNDo"
-			/>
+			<Menu>
+				<MenuButton>
+					<Avatar
+						size="md"
+						name="Maciej Wiatr"
+						src="https://media-exp1.licdn.com/dms/image/C5603AQFPmrAmKI4LaA/profile-displayphoto-shrink_800_800/0/1571424514415?e=1641427200&v=beta&t=gIZXpwL-fylGPsXZtz5hh44QtWl26yoVSzKXeaJgNDo"
+					/>
+				</MenuButton>
+				<MenuList border="none" shadow="md">
+					<MenuItem>Settings</MenuItem>
+					<MenuItem>Manage users</MenuItem>
+					<MenuItem color="red.500">Logout</MenuItem>
+				</MenuList>
+			</Menu>
 			<Spacer />
 			<Flex
 				flexDir={{ lg: "column", base: "row" }}

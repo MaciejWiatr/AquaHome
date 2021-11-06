@@ -34,13 +34,14 @@ const TodosContent = () => {
 				</Text>
 				<Text>{completedTodos} completed tasks</Text>
 				<Text color="purple.400" mb="2">
-					{100 - points} points to next level
+					{100 % points} points to next level
 				</Text>
 				<Progress
 					colorScheme="purple"
 					hasStripe
 					w="full"
 					value={points}
+					max={100}
 					rounded="full"
 					isAnimated
 				/>

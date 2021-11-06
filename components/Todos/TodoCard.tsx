@@ -2,7 +2,7 @@ import { Box, Flex, Text, Spacer, Checkbox } from "@chakra-ui/react";
 import { ImDroplet } from "react-icons/im";
 import confetti from "canvas-confetti";
 import { usePointsStore } from "../../src/store/usePointsStore";
-import { ChangeEvent, FormEvent, useRef } from "react";
+import { useRef } from "react";
 
 const TodoCard = ({ todoText, pointsAmout }) => {
 	const {
