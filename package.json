@@ -15,10 +15,13 @@
     "next": "12.0.3",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-icons": "^4.3.1",
     "zustand": "^3.6.4"
   },
   "devDependencies": {
+    "@types/react": "^17.0.34",
     "eslint": "7",
-    "eslint-config-next": "12.0.3"
+    "eslint-config-next": "12.0.3",
+    "typescript": "^4.4.4"
   }
 }
