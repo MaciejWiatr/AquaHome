@@ -19,7 +19,7 @@ const Navbar = () => {
 			gridArea="navbar"
 		>
 			{!isMd && <AquaHomeLogo />}
-			<Text fontSize="xl" fontWeight="bold">
+			<Text fontSize="xl" fontWeight="semibold">
 				AquaHome
 			</Text>
 			<Input
