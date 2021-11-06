@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/layout";
+import { Box, Flex, Spacer } from "@chakra-ui/layout";
 import TodosContent from "./TodosContent";
 
 const TodosContainer = () => {
@@ -9,6 +9,7 @@ const TodosContainer = () => {
 			bgColor="purple.50"
 			borderLeft="2px"
 			borderColor="gray.200"
+			h="full"
 		>
 			<TodosContent />
 		</Box>

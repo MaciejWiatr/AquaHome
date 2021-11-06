@@ -1,10 +1,27 @@
 import { Box, Flex, Text, Spacer, Checkbox } from "@chakra-ui/react";
 import { ImDroplet } from "react-icons/im";
 import confetti from "canvas-confetti";
+import { usePointsStore } from "../../src/store/usePointsStore";
+import { ChangeEvent, FormEvent, useRef } from "react";
 
 const TodoCard = ({ todoText, pointsAmout }) => {
-	const onChange = () => {
+	const {
+		increaseCompletedTodos,
+		decreaseCompletedTodos,
+		increasePoints,
+		decreasePoints,
+	} = usePointsStore();
+	const checkBoxRef = useRef<any>();
+
+	const onChange = (checked: boolean) => {
 		confetti();
+		if (checked) {
+			increaseCompletedTodos(1);
+			increasePoints(pointsAmout);
+		} else {
+			decreaseCompletedTodos(1);
+			decreasePoints(pointsAmout);
+		}
 	};
 
 	return (
@@ -39,7 +56,8 @@ const TodoCard = ({ todoText, pointsAmout }) => {
 						colorScheme="purple"
 						size="lg"
 						rounded="full"
-						onInput={onChange}
+						onChange={(e) => onChange(e.target.checked)}
+						ref={checkBoxRef}
 					/>
 				</Flex>
 			</Flex>
