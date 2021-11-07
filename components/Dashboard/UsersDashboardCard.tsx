@@ -29,7 +29,7 @@ const UsersDashboardCard = () => {
 					</Thead>
 					<Tbody overflow="hidden">
 						{users.map(({ name, drops }) => (
-							<Tr>
+							<Tr key={name}>
 								<Td>{name}</Td>
 								<Td>{drops}</Td>
 							</Tr>

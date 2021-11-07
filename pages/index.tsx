@@ -2,9 +2,9 @@ import { Flex, Grid, Text } from "@chakra-ui/layout";
 import React from "react";
 import BaseLayout from "../components/Layouts/BaseLayout";
 import { RiLayoutMasonryFill } from "react-icons/ri";
-import StatsDashboardCard from "../components/Dasboard/StatsDashboardCard";
-import UsersDashboardCard from "../components/Dasboard/UsersDashboardCard";
-import DevicesDashboardCard from "../components/Dasboard/DevicesDashboardCard";
+import StatsDashboardCard from "../components/Dashboard/StatsDashboardCard";
+import UsersDashboardCard from "../components/Dashboard/UsersDashboardCard";
+import DevicesDashboardCard from "../components/Dashboard/DevicesDashboardCard";
 
 const HomePage = () => {
 	return (

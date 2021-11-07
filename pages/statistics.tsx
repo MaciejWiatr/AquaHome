@@ -12,11 +12,11 @@ import { BsPlusCircle } from "react-icons/bs";
 import useChakraBreakpoints from "../src/hooks/useChakraBreakPoints";
 import AddNewDeviceModal from "../components/Modals/AddNewDeviceModal";
 import { useState } from "react";
-import DevicesSection from "../components/HomeSections/DevicesSection";
-import PeopleSection from "../components/HomeSections/PeopleSection";
+import DevicesSection from "../components/Statistics/DevicesStatisticsSection";
+import PeopleSection from "../components/Statistics/PeopleStatisticsSection";
 
 export default function StatisticsPage() {
-	const { isSm, isMd } = useChakraBreakpoints();
+	const { isMd } = useChakraBreakpoints();
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const [activeSection, setActiveSection] = useState("devices");
 
