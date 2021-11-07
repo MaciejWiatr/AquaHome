@@ -2,7 +2,7 @@ import { Button } from "@chakra-ui/button";
 import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Input } from "@chakra-ui/input";
 import { useRouter } from "next/dist/client/router";
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import LoginFormLayout from "../components/Layouts/LoginFormLayout";
 import useUserStore from "../src/store/useUserStore";
@@ -11,6 +11,10 @@ const LoginPage = () => {
 	const { setUsername, updateUser } = useUserStore();
 	const { register, handleSubmit } = useForm();
 	const router = useRouter();
+
+	useEffect(() => {
+		alert("Dane do logowania: login: sedzia, haslo: sedza");
+	}, []);
 
 	const onSubmit = async (data) => {
 		setUsername(data.username);
