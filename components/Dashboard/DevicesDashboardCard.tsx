@@ -63,9 +63,9 @@ const DevicesDashboardCard = () => {
 						</Tr>
 					</Thead>
 					<Tbody>
-						{devices.map(({ name, type, litersToday }) => (
+						{devices.map(({ name, type, litersToday, _id }) => (
 							<DeviceTableRow
-								key={Math.random()}
+								key={_id}
 								name={name}
 								type={type}
 								litersToday={Math.floor(Math.random() * 30)}
