@@ -13,7 +13,7 @@ const LoginPage = () => {
 	const router = useRouter();
 
 	useEffect(() => {
-		alert("Dane do logowania: login: sedzia, haslo: sedza");
+		alert("Dane do logowania: login: sedzia, haslo: sedzia");
 	}, []);
 
 	const onSubmit = async (data) => {
