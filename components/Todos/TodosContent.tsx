@@ -4,21 +4,6 @@ import { Progress } from "@chakra-ui/react";
 import useUserStore from "../../src/store/useUserStore";
 import { useMemo } from "react";
 
-const todos = [
-	{
-		todoText: "Wziąłem przysznic zamiast kąpieli",
-		pointsAmount: 20,
-	},
-	{
-		todoText: "Nastawiłem pełną pralkę",
-		pointsAmount: 50,
-	},
-	{
-		todoText: "Zakręciłem kran po umyciu zębów",
-		pointsAmount: 10,
-	},
-];
-
 const TodosContent = () => {
 	const { user } = useUserStore();
 

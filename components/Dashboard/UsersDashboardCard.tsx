@@ -3,6 +3,7 @@ import { Table, Tbody, Td, Th, Thead, Tr, Text } from "@chakra-ui/react";
 import React from "react";
 import DashboardCard from "./DashboardCard";
 import { ImDroplet } from "react-icons/im";
+import useUserStore from "../../src/store/useUserStore";
 
 const users = [
 	{ name: "Maciej", drops: 100 },
@@ -15,6 +16,7 @@ const users = [
 ];
 
 const UsersDashboardCard = () => {
+	// const 
 	return (
 		<DashboardCard title="Users" area="users">
 			<Box flexBasis="100%" h="full" maxH="full" overflowY="scroll">

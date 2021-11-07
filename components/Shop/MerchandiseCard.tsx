@@ -2,10 +2,10 @@ import { Button } from "@chakra-ui/button";
 import { Image } from "@chakra-ui/image";
 import { Divider, Flex, Text, Spacer } from "@chakra-ui/layout";
 import { ImDroplet } from "react-icons/im";
-import { usePointsStore } from "../../src/store/usePointsStore";
+import useUserStore from "../../src/store/useUserStore";
 
 const MerchandiseCard = ({ productName, productImage, productPrice }) => {
-	const { points } = usePointsStore();
+	const { user } = useUserStore();
 
 	return (
 		<Flex flexDir="column" rounded="lg" bg="white" shadow="sm" p="4">
@@ -23,7 +23,7 @@ const MerchandiseCard = ({ productName, productImage, productPrice }) => {
 					{productName}
 				</Text>
 				<Button
-					colorScheme={points >= productPrice ? "purple" : "gray"}
+					colorScheme={user.droplets >= productPrice ? "purple" : "gray"}
 				>
 					{productPrice} <ImDroplet />
 				</Button>

@@ -145,6 +145,7 @@ const ShopPage = () => {
 								shopImage={props.logo}
 								shopCoupon={props.discount}
 								shopSlogan={props.description}
+								shopPrice={props.price}
 							/>
 						))}
 					</SimpleGrid>
