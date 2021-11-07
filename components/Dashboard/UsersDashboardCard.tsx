@@ -7,16 +7,6 @@ import { backendUrl } from "../../src/globals";
 import useUserStore from "../../src/store/useUserStore";
 import axios from "axios";
 
-// const users = [
-// 	{ name: "Maciej", drops: 100 },
-// 	{ name: "Kuba", drops: 200 },
-// 	{ name: "Wiktor", drops: 300 },
-// 	{ name: "Grzegorz", drops: 500 },
-// 	{ name: "Stefan", drops: 600 },
-// 	{ name: "Stefan", drops: 600 },
-// 	{ name: "Stefan", drops: 600 },
-// ];
-
 const UsersDashboardCard = () => {
 	const { user } = useUserStore();
 	const [users, setUsers] = useState([]);
@@ -26,10 +16,12 @@ const UsersDashboardCard = () => {
 			setUsers([]);
 			return;
 		}
-		const resp = await axios.get(`${backendUrl}get/household/users?name=${user.household}`);
+		const resp = await axios.get(
+			`${backendUrl}get/household/users?name=${user.household}`
+		);
 		const users = resp.data.data;
 		setUsers(users);
-	}
+	};
 
 	useEffect(() => {
 		fetchUsers();
@@ -40,12 +32,14 @@ const UsersDashboardCard = () => {
 			<Box flexBasis="100%" h="full" maxH="full" overflowY="scroll">
 				<Table h="20" variant="striped">
 					<Thead position="sticky" top="0" bg="white">
-						<Th>Name</Th>
-						<Th>
-							<Flex alignItems="center" color="blue.400">
-								<Text mr="1">Droplets</Text> <ImDroplet />
-							</Flex>
-						</Th>
+						<Tr>
+							<Th>Name</Th>
+							<Th>
+								<Flex alignItems="center" color="blue.400">
+									<Text mr="1">Droplets</Text> <ImDroplet />
+								</Flex>
+							</Th>
+						</Tr>
 					</Thead>
 					<Tbody overflow="hidden">
 						{users.map(({ username, droplets }) => (

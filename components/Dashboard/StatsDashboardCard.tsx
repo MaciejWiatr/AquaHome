@@ -11,44 +11,32 @@ import {
 
 const data = [
 	{
-		date: "1",
+		date: "01.03",
 		liters: "76",
 	},
 	{
-		date: "2",
+		date: "02.03",
 		liters: "45",
 	},
 	{
-		date: "3",
+		date: "03.03",
 		liters: "56",
 	},
 	{
-		date: "4",
+		date: "04.03",
 		liters: "87",
 	},
 	{
-		date: "5",
+		date: "05.03",
 		liters: "34",
 	},
 	{
-		date: "6",
+		date: "06.03",
 		liters: "67",
 	},
 	{
-		date: "7",
+		date: "07.03",
 		liters: "69",
-	},
-	{
-		date: "8",
-		liters: "70",
-	},
-	{
-		date: "9",
-		liters: "89",
-	},
-	{
-		date: "10",
-		liters: "21",
 	},
 ];
 

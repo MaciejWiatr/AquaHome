@@ -9,7 +9,7 @@ import {
 } from "recharts";
 import { ImDroplet } from "react-icons/im";
 
-export function PeopleStatisticCard({ id, name, data }) {
+export function PeopleStatisticCard({ id, name, droplets, data }) {
 	return (
 		<Box key={id} w="full" bg="white" rounded="lg" shadow="sm" p="4" mb="4">
 			<Text color="gray.200" fontSize="xs">
@@ -21,12 +21,7 @@ export function PeopleStatisticCard({ id, name, data }) {
 			<Box mt="2">
 				<Text fontWeight="normal" fontSize="md" color="blue.400">
 					<Flex alignItems="center">
-						<Text mr="1">
-							Total droplets:{" "}
-							{data.reduce((a: any, b: any) => {
-								return a + parseInt(b.liters);
-							}, 0)}{" "}
-						</Text>
+						<Text mr="1">Total droplets: {droplets}</Text>
 						<ImDroplet />
 					</Flex>
 				</Text>
@@ -68,7 +63,7 @@ export function PeopleStatisticCard({ id, name, data }) {
 						<Tooltip />
 						<Area
 							type="monotone"
-							dataKey="liters"
+							dataKey="droplets"
 							stroke="#8884d8"
 							fillOpacity={1}
 							fill="url(#colorLiters)"

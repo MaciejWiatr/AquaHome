@@ -9,8 +9,6 @@ const TodoCard = ({ todoText, pointsAmount, completed, type }) => {
 	const { toggleTask } = useUserStore();
 	const checkBoxRef = useRef<any>();
 
-	console.log(completed);
-
 	const onChange = async (checked: boolean) => {
 		confetti();
 		await toggleTask(type);

@@ -23,11 +23,13 @@ import {
 	MenuItem,
 } from "@chakra-ui/react";
 import TodosContent from "../Todos/TodosContent";
+import { useRouter } from "next/dist/client/router";
 
 const Sidebar = () => {
+	const router = useRouter();
 	const { isLg } = useChakraBreakpoints();
 	const { isOpen, onOpen, onClose } = useDisclosure();
-	const { user } = useUserStore();
+	const { user, logout } = useUserStore();
 
 	return (
 		<Flex
@@ -51,12 +53,31 @@ const Sidebar = () => {
 						name="Maciej Wiatr"
 						src="https://media-exp1.licdn.com/dms/image/C5603AQFPmrAmKI4LaA/profile-displayphoto-shrink_800_800/0/1571424514415?e=1641427200&v=beta&t=gIZXpwL-fylGPsXZtz5hh44QtWl26yoVSzKXeaJgNDo"
 					/>
-					<Flex justify="center" align="center" color="blue.300" fontSize="sm" mt="2"><Text mr="0.5" fontWeight="bold">{ user.droplets }</Text> <ImDroplet /></Flex>
+					<Flex
+						justify="center"
+						align="center"
+						color="blue.300"
+						fontSize="sm"
+						mt="2"
+					>
+						<Text mr="0.5" fontWeight="bold">
+							{user.droplets}
+						</Text>{" "}
+						<ImDroplet />
+					</Flex>
 				</MenuButton>
 				<MenuList border="none" shadow="md">
 					<MenuItem>Settings</MenuItem>
 					<MenuItem>Manage users</MenuItem>
-					<MenuItem color="red.500">Logout</MenuItem>
+					<MenuItem
+						color="red.500"
+						onClick={() => {
+							logout();
+							router.push("/login");
+						}}
+					>
+						Logout
+					</MenuItem>
 				</MenuList>
 			</Menu>
 			<Spacer />

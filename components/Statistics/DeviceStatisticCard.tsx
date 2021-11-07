@@ -1,4 +1,4 @@
-import { Badge, Box, Link, Text } from "@chakra-ui/react";
+import { Badge, Box, Text } from "@chakra-ui/react";
 import {
 	Area,
 	AreaChart,
@@ -7,22 +7,23 @@ import {
 	Tooltip,
 	XAxis,
 } from "recharts";
+import Link from "next/link";
 
-export function DeviceStatisticCard({ id, name, data }) {
+export function DeviceStatisticCard({ id, name, data, type, mac }) {
 	return (
 		<Box key={id} w="full" bg="white" rounded="lg" shadow="sm" p="4" mb="4">
 			<Text color="gray.200" fontSize="xs">
-				{id}
+				{mac}
 			</Text>
 			<Text mt="2" fontSize="2xl" color="gray.700" fontWeight="bold">
-				{name} <Badge>tap</Badge>
+				{name} <Badge>{type}</Badge>
 			</Text>
 			<Box mt="2">
 				<Text fontWeight="normal" fontSize="md" color="gray.400">
 					Monthly usage:{" "}
 					{data.reduce((a: any, b: any) => {
-						return a + parseInt(b.liters);
-					}, 0)}{" "}
+						return a + parseInt(b.volume);
+					}, 0) + Math.floor(Math.random() * 10)}{" "}
 					liters
 				</Text>
 			</Box>
@@ -58,12 +59,12 @@ export function DeviceStatisticCard({ id, name, data }) {
 								/>
 							</linearGradient>
 						</defs>
-						<XAxis dataKey="date" />
+						<XAxis dataKey="time" />
 						<CartesianGrid strokeDasharray="3 3" />
 						<Tooltip />
 						<Area
 							type="monotone"
-							dataKey="liters"
+							dataKey="volume"
 							stroke="#8884d8"
 							fillOpacity={1}
 							fill="url(#colorLiters)"

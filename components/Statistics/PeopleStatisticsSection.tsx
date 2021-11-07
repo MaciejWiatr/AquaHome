@@ -1,8 +1,18 @@
 import { Box } from "@chakra-ui/react";
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import Masonry from "react-masonry-css";
+import { backendUrl } from "../../src/globals";
 import breakpointColumnsObj from "../../src/masonryBreakpoints";
+import useUserStore from "../../src/store/useUserStore";
 import { PeopleStatisticCard } from "./PeopleStatisticCard";
+
+const generateRandomUserData = () => {
+	return new Array(10).fill(1).map((value, index) => ({
+		date: `day ${index}`,
+		droplets: Math.floor(index * Math.random() * 2 + index),
+	}));
+};
 
 const people = [
 	{
@@ -54,18 +64,38 @@ const people = [
 ];
 
 const PeopleSection = () => {
+	const { user } = useUserStore();
+	const [users, setUsers] = useState([]);
+
+	const fetchUsers = async () => {
+		if (!user.household) {
+			setUsers([]);
+			return;
+		}
+		const resp = await axios.get(
+			`${backendUrl}get/household/users?name=${user.household}`
+		);
+		const users = resp.data.data;
+		setUsers(users);
+	};
+
+	useEffect(() => {
+		fetchUsers();
+	}, []);
+
 	return (
 		<Box h="full" w="full">
 			<Masonry
 				breakpointCols={breakpointColumnsObj}
 				className="masonry-grid"
 			>
-				{people.map(({ name, id, data }) => (
+				{users.map(({ username, droplets, id }) => (
 					<PeopleStatisticCard
 						key={id}
 						id={id}
-						name={name}
-						data={data}
+						name={username}
+						droplets={droplets}
+						data={generateRandomUserData()}
 					/>
 				))}
 			</Masonry>

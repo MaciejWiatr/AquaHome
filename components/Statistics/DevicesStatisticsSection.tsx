@@ -2,69 +2,45 @@ import { DeviceStatisticCard } from "./DeviceStatisticCard";
 import { Box } from "@chakra-ui/layout";
 import Masonry from "react-masonry-css";
 import breakpointColumnsObj from "../../src/masonryBreakpoints";
-
-const devices = [
-	{
-		name: "Kran w łazience",
-		id: "5b66fb7a-3f40-11ec-9bbc-0242ac130002",
-		data: [
-			{
-				date: "1",
-				liters: "76",
-			},
-			{
-				date: "2",
-				liters: "45",
-			},
-			{
-				date: "3",
-				liters: "56",
-			},
-			{
-				date: "4",
-				liters: "87",
-			},
-			{
-				date: "5",
-				liters: "34",
-			},
-			{
-				date: "6",
-				liters: "67",
-			},
-			{
-				date: "7",
-				liters: "69",
-			},
-			{
-				date: "8",
-				liters: "70",
-			},
-			{
-				date: "9",
-				liters: "89",
-			},
-			{
-				date: "10",
-				liters: "21",
-			},
-		],
-	},
-];
+import useUserStore from "../../src/store/useUserStore";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { backendUrl } from "../../src/globals";
 
 const DevicesSection = () => {
+	const { user } = useUserStore();
+	const [devices, setDevices] = useState([]);
+
+	const fetchDevices = async () => {
+		if (!user.household) {
+			setDevices([]);
+			return;
+		}
+		const resp = await axios.get(
+			`${backendUrl}get/household/devices?name=${user.household}`
+		);
+		let devicesData = resp.data.data;
+		setDevices(devicesData);
+	};
+
+	useEffect(() => {
+		fetchDevices();
+	}, []);
+
 	return (
 		<Box h="full" w="full">
 			<Masonry
 				breakpointCols={breakpointColumnsObj}
 				className="masonry-grid"
 			>
-				{devices.map(({ name, id, data }) => (
+				{devices.map(({ name, _id, water_data, type, mac }) => (
 					<DeviceStatisticCard
-						key={id}
-						id={id}
+						mac={mac}
+						key={_id}
+						id={_id}
+						type={type}
 						name={name}
-						data={data}
+						data={water_data}
 					/>
 				))}
 			</Masonry>
