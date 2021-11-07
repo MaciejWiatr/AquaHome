@@ -37,8 +37,8 @@ export default function StatisticsPage() {
 							<Text ml="4">Statistics</Text>
 						</>
 					)}
-					{/* TODO: FIX LATER */}
-					<Spacer />
+
+					<Spacer display={{ base: "none", md: "block" }} />
 					<Flex minWidth="200px">
 						<Button
 							roundedLeft="full"

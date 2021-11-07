@@ -33,9 +33,9 @@ const Navbar = () => {
 				placeholder="Search"
 			></Input>
 			<Spacer />
-			<NavbarLink url={""} name="Household" />
-			<NavbarLink url={""} name="Statistics" />
-			<NavbarLink url={""} name="Coupons" />
+			<NavbarLink url={"/"} name="Dashboard" />
+			<NavbarLink url={"/statistics"} name="Statistics" />
+			<NavbarLink url={"/shop"} name="Shop" />
 		</Flex>
 	);
 };

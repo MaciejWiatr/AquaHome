@@ -22,11 +22,11 @@ const HomePage = () => {
 					<Text ml="4">Dashboard</Text>
 				</Flex>
 				<Grid
-					overflow="hidden"
+					overflowY={{ base: "initial", lg: "hidden" }}
 					mt="4"
-					h="full"
 					w="full"
 					gap="4"
+					pb={{ base: "4" }}
 					templateRows={{ lg: "1fr 1fr" }}
 					templateColumns={{ base: "1fr", lg: "400px 1fr" }}
 					gridTemplateAreas={{

@@ -56,7 +56,7 @@ const StatsDashboardCard = () => {
 	return (
 		<DashboardCard title="Statistics" area="stats">
 			<Text>Average daily water usage: 570L</Text>
-			<ResponsiveContainer width="100%" height={280}>
+			<ResponsiveContainer width="100%" height={250}>
 				<AreaChart
 					data={data}
 					margin={{
@@ -87,6 +87,7 @@ const StatsDashboardCard = () => {
 					</defs>
 					<XAxis dataKey="date" />
 					<Tooltip />
+					<CartesianGrid strokeDasharray="3 3" />
 					<Area
 						type="monotone"
 						dataKey="liters"

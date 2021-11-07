@@ -16,7 +16,7 @@ interface IPointsStorage {
 export const usePointsStore = create<IPointsStorage>(
 	persist(
 		(set, get) => ({
-			points: 0,
+			points: 1000,
 			completedTodos: 0,
 			level: 0,
 			increasePoints(amount: number) {
@@ -32,8 +32,6 @@ export const usePointsStore = create<IPointsStorage>(
 				}));
 			},
 			increaseCompletedTodos(amount: number) {
-				console.log("ciul");
-
 				set((state) => ({
 					...state,
 					completedTodos: state.completedTodos + amount,

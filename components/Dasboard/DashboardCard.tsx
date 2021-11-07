@@ -5,14 +5,16 @@ const DashboardCard = ({ area, title, children }) => {
 		<Flex
 			gridArea={area}
 			w="full"
-			h="100%"
+			maxW="full"
 			rounded="lg"
 			bg="white"
 			shadow="sm"
 			p="6"
 			flexDir="column"
+			h="full"
 			maxH="full"
-			overflow="hidden"
+			overflowX="auto"
+			overflowY={{ base: "initial", lg: "hidden" }}
 			boxSizing="border-box"
 		>
 			<Flex w="full">

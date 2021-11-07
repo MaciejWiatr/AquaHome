@@ -4,7 +4,7 @@ import confetti from "canvas-confetti";
 import { usePointsStore } from "../../src/store/usePointsStore";
 import { useRef } from "react";
 
-const TodoCard = ({ todoText, pointsAmout }) => {
+const TodoCard = ({ todoText, pointsAmount }) => {
 	const {
 		increaseCompletedTodos,
 		decreaseCompletedTodos,
@@ -17,10 +17,10 @@ const TodoCard = ({ todoText, pointsAmout }) => {
 		confetti();
 		if (checked) {
 			increaseCompletedTodos(1);
-			increasePoints(pointsAmout);
+			increasePoints(pointsAmount);
 		} else {
 			decreaseCompletedTodos(1);
-			decreasePoints(pointsAmout);
+			decreasePoints(pointsAmount);
 		}
 	};
 
@@ -42,7 +42,7 @@ const TodoCard = ({ todoText, pointsAmout }) => {
 						fontSize="sm"
 						color="blue.300"
 					>
-						<Text mr="0.5">{pointsAmout}</Text> <ImDroplet />
+						<Text mr="0.5">{pointsAmount}</Text> <ImDroplet />
 					</Flex>
 				</Box>
 				<Spacer />

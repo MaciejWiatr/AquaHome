@@ -26,6 +26,7 @@ const BaseLayout = ({ children }) => {
 				gridArea="base"
 				h="full"
 				boxSizing="border-box"
+				overflowY="auto"
 			>
 				{children}
 			</GridItem>

@@ -28,8 +28,12 @@ const AquaHomeLogo = () => {
 						y2="904.669"
 						gradientUnits="userSpaceOnUse"
 					>
-						<stop stopColor="#00F260" />
-						<stop offset="1" stopColor="#0575E6" stopOpacity="0" />
+						<stop stopColor="#FC466B" />
+						<stop
+							offset="1"
+							stopColor="#3F5EFB"
+							stopOpacity="0.5"
+						/>
 					</linearGradient>
 				</defs>
 			</svg>
