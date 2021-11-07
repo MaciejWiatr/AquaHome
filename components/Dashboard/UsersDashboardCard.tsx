@@ -1,22 +1,40 @@
 import { Box, Flex } from "@chakra-ui/layout";
 import { Table, Tbody, Td, Th, Thead, Tr, Text } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import DashboardCard from "./DashboardCard";
 import { ImDroplet } from "react-icons/im";
+import { backendUrl } from "../../src/globals";
 import useUserStore from "../../src/store/useUserStore";
+import axios from "axios";
 
-const users = [
-	{ name: "Maciej", drops: 100 },
-	{ name: "Kuba", drops: 200 },
-	{ name: "Wiktor", drops: 300 },
-	{ name: "Grzegorz", drops: 500 },
-	{ name: "Stefan", drops: 600 },
-	{ name: "Stefan", drops: 600 },
-	{ name: "Stefan", drops: 600 },
-];
+// const users = [
+// 	{ name: "Maciej", drops: 100 },
+// 	{ name: "Kuba", drops: 200 },
+// 	{ name: "Wiktor", drops: 300 },
+// 	{ name: "Grzegorz", drops: 500 },
+// 	{ name: "Stefan", drops: 600 },
+// 	{ name: "Stefan", drops: 600 },
+// 	{ name: "Stefan", drops: 600 },
+// ];
 
 const UsersDashboardCard = () => {
-	// const 
+	const { user } = useUserStore();
+	const [users, setUsers] = useState([]);
+
+	const fetchUsers = async () => {
+		if (!user.household) {
+			setUsers([]);
+			return;
+		}
+		const resp = await axios.get(`${backendUrl}get/household/users?name=${user.household}`);
+		const users = resp.data.data;
+		setUsers(users);
+	}
+
+	useEffect(() => {
+		fetchUsers();
+	}, []);
+
 	return (
 		<DashboardCard title="Users" area="users">
 			<Box flexBasis="100%" h="full" maxH="full" overflowY="scroll">
@@ -30,10 +48,10 @@ const UsersDashboardCard = () => {
 						</Th>
 					</Thead>
 					<Tbody overflow="hidden">
-						{users.map(({ name, drops }) => (
+						{users.map(({ username, droplets }) => (
 							<Tr key={Math.random()}>
-								<Td>{name}</Td>
-								<Td>{drops}</Td>
+								<Td>{username}</Td>
+								<Td>{droplets}</Td>
 							</Tr>
 						))}
 					</Tbody>
