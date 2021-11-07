@@ -1,7 +1,8 @@
 import TodoCard from "./TodoCard";
 import { Flex, Text, Spacer } from "@chakra-ui/layout";
 import { Progress } from "@chakra-ui/react";
-import { usePointsStore } from "../../src/store/usePointsStore";
+import useUserStore from "../../src/store/useUserStore";
+import { useMemo } from "react";
 
 const todos = [
 	{
@@ -19,7 +20,15 @@ const todos = [
 ];
 
 const TodosContent = () => {
-	const { completedTodos, points } = usePointsStore();
+	const { user } = useUserStore();
+
+	const maxPoints = useMemo(() => {
+		let points = 0;
+		user.active_tasks.forEach(({ reward }) => {
+			points += reward;
+		});
+		return points;
+	}, [user]);
 
 	return (
 		<Flex p="8" pt="6" flexDir="column" h="full">
@@ -30,8 +39,14 @@ const TodosContent = () => {
 				Laborum dolor adipisicing cupidatat aute.
 			</Text>
 			<Flex flexDir="column" mt="2">
-				{todos.map((props) => (
-					<TodoCard key={props.todoText} {...props} />
+				{user.active_tasks.map(({ name, type, reward, completed }) => (
+					<TodoCard
+						key={type}
+						todoText={name}
+						pointsAmount={reward}
+						completed={completed}
+						type={type}
+					/>
 				))}
 			</Flex>
 			<Spacer />
@@ -46,16 +61,23 @@ const TodosContent = () => {
 				<Text fontSize="md" fontWeight="semibold">
 					Your progress:
 				</Text>
-				<Text>{completedTodos} completed tasks</Text>
+				<Text>
+					{
+						user.active_tasks.filter(
+							({ completed }) => completed === true
+						).length
+					}{" "}
+					completed tasks
+				</Text>
 				<Text color="purple.400" mb="2">
-					{100 % points} points to go
+					{maxPoints - user.droplets} points to go
 				</Text>
 				<Progress
 					colorScheme="purple"
 					hasStripe
 					w="full"
-					value={100 - (100 % points)}
-					max={100}
+					value={user.droplets}
+					max={maxPoints}
 					rounded="full"
 					isAnimated
 				/>

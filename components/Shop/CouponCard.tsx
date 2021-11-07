@@ -16,7 +16,7 @@ const CouponCard = ({ shopName, shopSlogan, shopImage, shopCoupon }) => {
 				<Spacer />
 				<Flex flexDir="column" textAlign="right">
 					<Text fontWeight="bold" color="purple.400">
-						{shopCoupon}zł{" "}
+						{shopCoupon}{" "}
 					</Text>
 					<Text>discount</Text>
 				</Flex>

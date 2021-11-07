@@ -41,7 +41,7 @@ const DevicesDashboardCard = () => {
 					<Tbody>
 						{mockDevices.map(({ name, type, litersToday }) => (
 							<DeviceTableRow
-								key={name}
+								key={Math.random()}
 								name={name}
 								type={type}
 								litersToday={litersToday}

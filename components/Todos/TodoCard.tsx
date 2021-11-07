@@ -3,25 +3,17 @@ import { ImDroplet } from "react-icons/im";
 import confetti from "canvas-confetti";
 import { usePointsStore } from "../../src/store/usePointsStore";
 import { useRef } from "react";
+import useUserStore from "../../src/store/useUserStore";
 
-const TodoCard = ({ todoText, pointsAmount }) => {
-	const {
-		increaseCompletedTodos,
-		decreaseCompletedTodos,
-		increasePoints,
-		decreasePoints,
-	} = usePointsStore();
+const TodoCard = ({ todoText, pointsAmount, completed, type }) => {
+	const { toggleTask } = useUserStore();
 	const checkBoxRef = useRef<any>();
 
-	const onChange = (checked: boolean) => {
+	console.log(completed);
+
+	const onChange = async (checked: boolean) => {
 		confetti();
-		if (checked) {
-			increaseCompletedTodos(1);
-			increasePoints(pointsAmount);
-		} else {
-			decreaseCompletedTodos(1);
-			decreasePoints(pointsAmount);
-		}
+		await toggleTask(type);
 	};
 
 	return (
@@ -56,6 +48,7 @@ const TodoCard = ({ todoText, pointsAmount }) => {
 						colorScheme="purple"
 						size="lg"
 						rounded="full"
+						isChecked={completed}
 						onChange={(e) => onChange(e.target.checked)}
 						ref={checkBoxRef}
 					/>

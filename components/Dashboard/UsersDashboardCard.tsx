@@ -29,7 +29,7 @@ const UsersDashboardCard = () => {
 					</Thead>
 					<Tbody overflow="hidden">
 						{users.map(({ name, drops }) => (
-							<Tr key={name}>
+							<Tr key={Math.random()}>
 								<Td>{name}</Td>
 								<Td>{drops}</Td>
 							</Tr>

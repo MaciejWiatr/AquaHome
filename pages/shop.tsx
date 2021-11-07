@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import BaseLayout from "../components/Layouts/BaseLayout";
 import { Flex, SimpleGrid, Text, Box } from "@chakra-ui/react";
 import { IoTicket } from "react-icons/io5";
 import CouponCard from "../components/Shop/CouponCard";
 import MerchandiseCard from "../components/Shop/MerchandiseCard";
+import axios from "axios";
+import { backendUrl } from "../src/globals";
+import useUserStore from "../src/store/useUserStore";
 
 const products = [
 	{
@@ -26,44 +29,67 @@ const products = [
 	},
 ];
 
-const coupons = [
-	{
-		shopName: "Empik",
-		shopSlogan: "Wszystko dla rodziny",
-		shopImage:
-			"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Empik.svg/1280px-Empik.svg.png",
-		shopCoupon: "10",
-	},
-	{
-		shopName: "Lidl",
-		shopSlogan: "Wszystko dla rodziny",
-		shopImage:
-			"https://logos-world.net/wp-content/uploads/2020/12/Lidl-Logo.png",
-		shopCoupon: "10",
-	},
-	{
-		shopName: "H&M",
-		shopSlogan: "Wszystko dla rodziny",
-		shopImage: "https://www2.hm.com/hm-logo.png",
-		shopCoupon: "10",
-	},
-	{
-		shopName: "Empik",
-		shopSlogan: "Wszystko dla rodziny",
-		shopImage:
-			"https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Logo-ca-red.svg/1200px-Logo-ca-red.svg.png",
-		shopCoupon: "10",
-	},
-	{
-		shopName: "Empik",
-		shopSlogan: "Wszystko dla rodziny",
-		shopImage:
-			"https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Logo-ca-red.svg/1200px-Logo-ca-red.svg.png",
-		shopCoupon: "10",
-	},
-];
+// const coupons = [
+// 	{
+// 		shopName: "Empik",
+// 		shopSlogan: "Wszystko dla rodziny",
+// 		shopImage:
+// 			"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Empik.svg/1280px-Empik.svg.png",
+// 		shopCoupon: "10",
+// 	},
+// 	{
+// 		shopName: "Lidl",
+// 		shopSlogan: "Wszystko dla rodziny",
+// 		shopImage:
+// 			"https://logos-world.net/wp-content/uploads/2020/12/Lidl-Logo.png",
+// 		shopCoupon: "10",
+// 	},
+// 	{
+// 		shopName: "H&M",
+// 		shopSlogan: "Wszystko dla rodziny",
+// 		shopImage: "https://www2.hm.com/hm-logo.png",
+// 		shopCoupon: "10",
+// 	},
+// 	{
+// 		shopName: "Empik",
+// 		shopSlogan: "Wszystko dla rodziny",
+// 		shopImage:
+// 			"https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Logo-ca-red.svg/1200px-Logo-ca-red.svg.png",
+// 		shopCoupon: "10",
+// 	},
+// 	{
+// 		shopName: "Empik",
+// 		shopSlogan: "Wszystko dla rodziny",
+// 		shopImage:
+// 			"https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Logo-ca-red.svg/1200px-Logo-ca-red.svg.png",
+// 		shopCoupon: "10",
+// 	},
+// ];
 
 const ShopPage = () => {
+	const { user } = useUserStore();
+	const [coupons, setCoupons] = useState([]);
+	const [merchandise, setMerchandise] = useState([]);
+
+	const fetchCoupons = async () => {
+		const resp = await axios.get(`${backendUrl}get/coupons`);
+		const data = resp.data.data;
+		console.log(data);
+		setCoupons(data);
+	};
+
+	const fetchMerchandise = async () => {
+		const resp = await axios.get(`${backendUrl}get/merch`);
+		const data = resp.data.data;
+		console.log(data);
+		setMerchandise(data);
+	};
+
+	useEffect(() => {
+		fetchCoupons();
+		fetchMerchandise();
+	}, []);
+
 	return (
 		<BaseLayout>
 			<Flex flexDir="column" w="full" h="full" color="gray.500">
@@ -89,10 +115,12 @@ const ShopPage = () => {
 						mt="2"
 						spacing="4"
 					>
-						{products.map((props) => (
+						{merchandise.map((props) => (
 							<MerchandiseCard
 								key={props.productName}
-								{...props}
+								productName={props.name}
+								productImage={props.logo}
+								productPrice={props.price}
 							/>
 						))}
 					</SimpleGrid>
@@ -111,7 +139,13 @@ const ShopPage = () => {
 						spacing="4"
 					>
 						{coupons.map((props) => (
-							<CouponCard key={props.shopName} {...props} />
+							<CouponCard
+								key={props.shopName}
+								shopName={props.shop}
+								shopImage={props.logo}
+								shopCoupon={props.discount}
+								shopSlogan={props.description}
+							/>
 						))}
 					</SimpleGrid>
 				</Flex>
